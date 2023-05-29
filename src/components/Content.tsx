@@ -1,5 +1,6 @@
 import {FC} from "react";
-import Container from "@/components/Container";
+import Container from "./Container";
+import styles from '@/styles/Content.module.scss'
 
 interface ContentProps{
     children:FC
@@ -7,7 +8,7 @@ interface ContentProps{
 
 const Content:FC<ContentProps>=({children})=>{
     return(
-        <main>
+        <main className={styles.main}>
             <Container>
                 {children}
             </Container>

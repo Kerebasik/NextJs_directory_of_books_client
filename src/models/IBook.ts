@@ -1,4 +1,4 @@
-interface IBook{
+export interface IBook{
     _id:string,
     name:string,
     author:string,
@@ -6,5 +6,3 @@ interface IBook{
     image:string,
     tags:Array<string>,
 }
-
-export {IBook}

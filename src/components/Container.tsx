@@ -1,12 +1,14 @@
 import {FC} from "react";
 
+import styles from '@/styles/Container.module.scss'
+
 interface ContainerProps{
     children:FC
 }
 
 const Container:FC<ContainerProps>=({children})=>{
     return(
-        <div className={'container'}>
+        <div className={styles.container}>
             {children}
         </div>
     )

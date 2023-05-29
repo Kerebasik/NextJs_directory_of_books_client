@@ -1,11 +1,14 @@
 import {FC} from "react";
-import Container from "@/components/Container";
+import Container from "./Container";
+import styles from '@/styles/Footer.module.scss'
 
 const Footer:FC = () => {
   return(
-        <footer>
+        <footer className={styles.footer}>
             <Container>
-                @Copyright 2023
+                <div className={styles.text}>
+                    @Copyright 2023
+                </div>
             </Container>
         </footer>
   )

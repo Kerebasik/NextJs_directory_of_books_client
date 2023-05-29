@@ -1,13 +1,17 @@
 import {FC} from "react";
-import Container from "@/components/Container";
+import Container from "./Container";
+import Link from "next/link";
+import styles from '@/styles/Header.module.scss'
 
 const Header:FC=()=>{
     return(
-        <header>
+        <header className={styles.header}>
             <Container>
-                <div>Books life</div>
-                <div>link link link</div>
-                <div>Catalog</div>
+                <nav className={styles.navigate}>
+                    <Link href={'/'}>Home</Link>
+                    <Link href={'/books/book/1'}>Catalog</Link>
+                    <Link href={'/books'}>Terms of use</Link>
+                </nav>
             </Container>
         </header>
     )
