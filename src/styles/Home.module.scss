@@ -1,0 +1,39 @@
+@import "variables.scss";
+
+.home{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .title{
+    border: 1px solid $textColor;
+    width: 70%;
+    display: flex;
+    color: $mainBack;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:20px 0;
+    padding:20px 0;
+    background: center url("../../public/titleBack.jpg");
+    h1{
+      margin: 5px 0;
+    }
+  }
+
+  .text{
+    color: $textColor;
+    h3{
+      margin: 10px 0;
+      font-weight: 700;
+    }
+    margin:20px 0;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
