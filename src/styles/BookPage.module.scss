@@ -1,0 +1,107 @@
+@import "variables.scss";
+
+.bookPage{
+  max-width: 500px;
+  border:2px solid $footerBack;
+  background: $cardsBack;
+  border-radius: 25px;
+  padding: 15px;
+  width: 50%;
+  margin: 25px auto;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  &__title{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__description{
+    textarea{
+      width: 100%;
+      height: 100%;
+      min-height: 150px;
+      font-size: 25px;
+      resize: none;
+      padding: 5px;
+      word-wrap: break-word;
+    }
+  }
+
+  &__image{
+    position: relative;
+    min-height: 300px;
+    border-radius: 25px;
+    margin: 15px 0;
+    label{
+    }
+
+    &_editOn{
+      cursor: pointer;
+    }
+
+    input{
+      display: none;
+    }
+
+    &__img{
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+    }
+  }
+
+  &__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input{
+      width: 100%;
+      text-align: center;
+    }
+    &_name{
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid $textColor;
+      font-weight: 700;
+      input{
+        font-size: 20px;
+      }
+    }
+    &_tags{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 5px;
+      input{
+        font-size: 18px;
+      }
+    }
+    &_author{
+      text-align: center;
+      width: 100%;
+      margin: 10px 0;
+      input{
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.tag{
+  word-wrap: normal;
+  font-size: 16px;
+  border: 1px solid $headerBack;
+  color: $footerBack;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: $mainBack;
+}
+
+@media (max-width: 768px) {
+  .bookPage{
+    width: 95%;
+  }
+}
