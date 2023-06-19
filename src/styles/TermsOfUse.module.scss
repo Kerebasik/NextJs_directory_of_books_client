@@ -1,0 +1,22 @@
+.termsOfUse{
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1{
+    font-weight: 700;
+    margin: 20px 0;
+  }
+
+  .list{
+    margin-bottom: 100px;
+    ul{
+      list-style-position: inside;
+      li{
+        margin:10px 15px;
+      }
+    }
+  }
+
+}
