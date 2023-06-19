@@ -79,6 +79,10 @@ export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
         })
     }
 
+    const handleDeleteBook = ()=>{
+        console.log("delete")
+    }
+
     return(
         <>
             <div className={styles.bookPage}>
@@ -139,7 +143,8 @@ export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
                             <p>{description}</p>
                     }
                 </div>
-                <EditPanel edit={edit} saveClick={sendNewData} editOnChange={toggleEditMode} />
+                <EditPanel edit={edit} saveClick={sendNewData} handleDeleteBook={handleDeleteBook} editOnChange={toggleEditMode} />
+
             </div>
         </>
     )

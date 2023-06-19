@@ -1,0 +1,36 @@
+@import "variables.scss";
+
+@mixin backgroundImage($src){
+  background-image: url($src) ;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.buttonDelete{
+  background-color: $mainBack;
+  @include backgroundImage("../../public/icons8-delete-30_black.png");
+  width: 50px;
+  height: 50px;
+  border: 1px solid $textColor;
+  border-radius: 25px;
+  transition-property: background-color, background-image;
+  transition-duration: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    background-color: $textColor;
+    @include backgroundImage("../../public/icons8-delete-30.png");
+    button{
+      color: $mainBack;
+    }
+
+  }
+  button{
+    font-size: 24px;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    background: none;
+  }
+}
