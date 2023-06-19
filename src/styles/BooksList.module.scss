@@ -1,0 +1,43 @@
+@import "variables.scss";
+@mixin borderList($width){
+  border-left: $width solid $footerBack;
+  border-right: $width solid $footerBack;
+}
+
+.panel{
+  display: flex;
+  justify-content: right;
+  button{
+    border: 1px solid $textColor;
+    color: $textColor;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    transition-property: background-color, color;
+    transition-duration: 0.5s;
+    font-weight: 700;
+    &:hover{
+      background-color: $headerBack;
+      color: $mainBack;
+    }
+  }
+}
+
+.list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px;
+}
+
+@media (min-width: 375px) {
+  .list{
+    @include borderList(2.5px);
+  }
+
+}
+
