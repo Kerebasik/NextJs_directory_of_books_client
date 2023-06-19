@@ -1,18 +1,15 @@
 import '@/styles/globals.scss'
 import type { AppProps } from 'next/app'
 import {Layout} from "@/components/Layout";
-import {useEffect} from "react";
 
 function App({ Component, pageProps }: AppProps) {
-    useEffect(()=>{
-        document.getElementById('__next').classList.add('wrapper');
-        return ()=>{
-            document.getElementById('__next').classList.remove('wrapper')
-        }
-    },[])
-  return <Layout>
+  return(
+      <>
+        <Layout>
             <Component {...pageProps} />
           </Layout>
+      </>
+  )
 }
 
 export default App

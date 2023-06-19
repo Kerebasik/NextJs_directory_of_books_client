@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Link from "next/link";
+import HomePage from '@/components/pages/HomePage'
 
 function Home() {
   return (
@@ -7,10 +7,7 @@ function Home() {
         <Head>
             <title>Home</title>
         </Head>
-        <div>
-            <h1>Home</h1>
-            <Link href={'/books/book/1'}>Link</Link>
-        </div>
+        <HomePage/>
       </>
     )
 }

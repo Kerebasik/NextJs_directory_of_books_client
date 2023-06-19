@@ -1,16 +1,51 @@
 import {IBook} from "@/models/IBook";
-import {FC} from "react";
 import Head from "next/head";
-import {useRouter} from "next/router";
-
-const Book:FC<IBook> = () =>{
-    const { id } = useRouter();
+import {BookService} from "@/services/bookService";
+import {BookPage} from "@/components/pages/BookPage";
+import {getImage} from "@/http/getImage";
+const Book = ({data, imageUrl}) =>{
     return(<>
         <Head>
-            <title>{id}</title>
+            <title>{data.name}</title>
         </Head>
-        <div>Book {id}</div>
+        <BookPage data={data} imageUrl={imageUrl}/>
     </>)
+}
+
+export const getStaticProps = async (context)=>{
+    const id = context.params.id
+    const res = await BookService.getBookById(id)
+
+    let imageUrl:string | null
+    if(res.data[0].image){
+        imageUrl = await getImage(res.data[0].image)
+    } else {
+        imageUrl = null;
+    }
+
+    const data:IBook = res.data[0]
+
+    return{
+        props:{data, imageUrl}
+    }
+}
+
+export const getStaticPaths = async ()=>{
+    const res = await BookService.getAllBooks()
+    const data = res.data
+
+    const paths = data.map((item)=>{
+        return {
+            params:{
+                id:item._id.toString()
+            }
+        }
+    })
+
+    return {
+        paths,
+        fallback:false
+    }
 }
 
 export default Book
