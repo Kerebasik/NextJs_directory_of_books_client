@@ -1,7 +1,12 @@
+import {CreateBookPage} from "@/components/pages/CreateBookPage";
+import Head from "next/head";
 
 const CreateBook = ()=>{
     return(<>
-        <div>Create</div>
+        <Head>
+            <title>Create</title>
+        </Head>
+        <CreateBookPage/>
     </>)
 }
 

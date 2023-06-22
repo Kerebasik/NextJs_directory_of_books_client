@@ -2,7 +2,7 @@ import {IBook} from "@/models/IBook";
 import Head from "next/head";
 import {BookService} from "@/services/bookService";
 import {BookPage} from "@/components/pages/BookPage";
-import {getImage} from "@/http/getImage";
+
 const Book = ({data, imageUrl}) =>{
     return(<>
         <Head>
@@ -18,7 +18,7 @@ export const getStaticProps = async (context)=>{
 
     let imageUrl:string | null
     if(res.data[0].image){
-        imageUrl = await getImage(res.data[0].image)
+        imageUrl = await BookService.getImageBook(res.data[0].image)
     } else {
         imageUrl = null;
     }
