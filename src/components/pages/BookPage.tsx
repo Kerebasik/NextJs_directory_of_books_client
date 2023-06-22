@@ -5,7 +5,9 @@ import Image from "next/image";
 import imageStatic from '../../../public/image.png'
 import {v4} from 'uuid';
 import {EditPanel} from "@/components/EditPanel";
-import {updateBook} from "@/http/updateBook";
+import {BookService} from "@/services/bookService";
+import {useRouter} from "next/router";
+import {AxiosResponse} from "axios";
 
 
 interface BookPageProps{
@@ -22,6 +24,7 @@ export const Tags:FC = ({text}:string) =>{
 }
 
 export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
+    const router = useRouter()
     const [edit, setEdit] = useState<boolean>(false)
     const [description, setDescription] = useState<string>(data.description)
     const [tags, setTags] = useState<string[]>(data.tags)
@@ -29,6 +32,35 @@ export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
     const [author, setAuthor] = useState<string>(data.author)
     const [image, setImage] = useState<string | null>(imageUrl)
     const [selectedImage, setSelectedImage] = useState<File>(null)
+    const [valid, setValid] = useState(true);
+    const [errorName, setErrorName] = useState<string | null>(null)
+    const [errorAuthor, setErrorAuthor] = useState<string | null>(null);
+
+    useEffect(()=>{
+        if(author || name){
+            if(author){
+                setErrorAuthor(null)
+            }
+            if(name){
+                setErrorName(null)
+            }
+            if(author && name){
+                setErrorName(null)
+                setErrorAuthor(null)
+                setValid(true)
+                return
+            }
+        }
+
+        setValid(false)
+        if(!name){
+            setErrorName('Name is required')
+        }
+        if(!author){
+            setErrorAuthor('Author is required')
+        }
+        return
+    },[author, name])
 
     useEffect(()=>{
         return ()=>{
@@ -72,15 +104,23 @@ export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
     };
 
     const sendNewData = () =>{
-        updateBook({ _id:data._id,name, author,description, tags, imageFile:selectedImage}).then(()=>{
-            setImage(URL.createObjectURL(selectedImage))
-        }).catch(()=>{
-             toggleEditMode()
-        })
+        if(valid){
+            BookService.updateBook({ _id:data._id,name, author,description, tags, imageFile:selectedImage}).then((res:AxiosResponse<IBook>)=>{
+                setImage(URL.createObjectURL(selectedImage))
+                setName(res.data.name)
+                setAuthor(res.data.author)
+                setDescription(res.data.description)
+                setTags(res.data.tags)
+            }).catch(()=>{
+                toggleEditMode()
+            })
+        }
     }
 
     const handleDeleteBook = ()=>{
-        console.log("delete")
+        BookService.deleteBookById(data._id).then(()=>{
+            router.push('/books')
+        })
     }
 
     return(
@@ -109,15 +149,21 @@ export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
 
                     </div>
                     <div className={styles.bookPage__content}>
+
                         {edit ?
                                 <>
+                                    {errorName && <div className={styles.bookPage__errorAlert}>{errorName}</div>}
+                                    {errorAuthor && <div className={styles.bookPage__errorAlert}>{errorAuthor}</div>}
                                     <h3 className={styles.bookPage__content_name}>
+                                        <p>Name:</p>
                                         <input value={name} onChange={handleOnChangeInputName}/>
                                     </h3>
                                     <p className={styles.bookPage__content_author}>
+                                        <p>Author:</p>
                                         <input value={author} onChange={handleOnChangeInputAuthor}/>
                                     </p>
                                     <p className={styles.bookPage__content_tags}>
+                                        <p>Tags:</p>
                                         <input value={tags.join(',')} onChange={handleOnChangeInputTags}/>
                                     </p>
 
@@ -135,16 +181,18 @@ export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
                 <div className={styles.bookPage__description}>
                     {
                         edit ?
-                            <textarea
-                                value={description}
-                                onChange={handleOnChangeTextarea}
-                            />
+                            <>
+                                <p>Description:</p>
+                                <textarea
+                                    value={description}
+                                    onChange={handleOnChangeTextarea}
+                                />
+                            </>
                             :
                             <p>{description}</p>
                     }
                 </div>
                 <EditPanel edit={edit} saveClick={sendNewData} handleDeleteBook={handleDeleteBook} editOnChange={toggleEditMode} />
-
             </div>
         </>
     )
