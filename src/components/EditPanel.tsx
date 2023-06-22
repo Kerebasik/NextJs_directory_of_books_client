@@ -1,6 +1,7 @@
 import {FC, MouseEvent} from "react";
 import styles from '@/styles/ButtonEdit.module.scss'
-import {ButtonDelete} from "@/components/ButtonDelete";
+import {ButtonDelete} from "@/components/buttons/ButtonDelete";
+import {ButtonSave} from "@/components/buttons/ButtonSave";
 
 interface EditPanelProps {
     edit: boolean;
@@ -11,8 +12,6 @@ interface EditPanelProps {
 
 
 export const EditPanel:FC<EditPanelProps> = ({edit= false, saveClick=()=>{},handleDeleteBook=()=>{}, editOnChange =()=>{}})=>{
-
-
     return(
         <div className={styles.editPanel}>
             <div className={styles.buttonEdit}>
@@ -21,14 +20,7 @@ export const EditPanel:FC<EditPanelProps> = ({edit= false, saveClick=()=>{},hand
             {
                 edit &&
                 <>
-                    <div className={styles.buttonSave}>
-                        <button onClick={
-                            (e:MouseEvent<HTMLButtonElement>)=>{
-                                editOnChange(e)
-                                saveClick()
-                            }
-                        }>Save</button>
-                    </div>
+                    <ButtonSave saveClick={saveClick} editOnChange={editOnChange}/>
                     <ButtonDelete deleteBook={handleDeleteBook}/>
                 </>
             }
