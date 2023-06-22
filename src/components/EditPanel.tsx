@@ -1,4 +1,4 @@
-import {FC, MouseEvent} from "react";
+import {FC} from "react";
 import styles from '@/styles/ButtonEdit.module.scss'
 import {ButtonDelete} from "@/components/buttons/ButtonDelete";
 import {ButtonSave} from "@/components/buttons/ButtonSave";
@@ -6,7 +6,7 @@ import {ButtonSave} from "@/components/buttons/ButtonSave";
 interface EditPanelProps {
     edit: boolean;
     saveClick: Function;
-    editOnChange: (event: MouseEvent<HTMLButtonElement>) => void
+    editOnChange: () => void
     handleDeleteBook: () => void
 }
 

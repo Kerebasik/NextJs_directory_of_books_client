@@ -72,10 +72,6 @@ export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
 
     const toggleEditMode=()=>{
         setEdit(!edit)
-        setTags(data.tags)
-        setName(data.name)
-        setAuthor(data.author)
-        setDescription(data.description)
         if(edit && !selectedImage){
             setImage(imageUrl)
         }
@@ -154,18 +150,18 @@ export const BookPage:FC<BookPageProps> = ({data, imageUrl})=>{
                                 <>
                                     {errorName && <div className={styles.bookPage__errorAlert}>{errorName}</div>}
                                     {errorAuthor && <div className={styles.bookPage__errorAlert}>{errorAuthor}</div>}
-                                    <h3 className={styles.bookPage__content_name}>
+                                    <div className={styles.bookPage__content_name}>
                                         <p>Name:</p>
                                         <input value={name} onChange={handleOnChangeInputName}/>
-                                    </h3>
-                                    <p className={styles.bookPage__content_author}>
+                                    </div>
+                                    <div className={styles.bookPage__content_author}>
                                         <p>Author:</p>
                                         <input value={author} onChange={handleOnChangeInputAuthor}/>
-                                    </p>
-                                    <p className={styles.bookPage__content_tags}>
+                                    </div>
+                                    <div className={styles.bookPage__content_tags}>
                                         <p>Tags:</p>
                                         <input value={tags.join(',')} onChange={handleOnChangeInputTags}/>
-                                    </p>
+                                    </div>
 
                                 </>
                             :
