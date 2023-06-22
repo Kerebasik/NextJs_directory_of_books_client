@@ -4,7 +4,7 @@ import styles from '@/styles/Book.module.scss'
 import imageStatic from '../../public/Book.png'
 import Image from "next/image";
 import {v4} from "uuid";
-import {getImage} from "@/http/getImage";
+import {BookService} from "@/services/bookService";
 
 interface BookProps{
     item:IBook
@@ -16,7 +16,7 @@ export const Book:FC<BookProps>=({item})=>{
     useEffect(()=>{
         const reqImage = async ()=>{
             if(!!item.image){
-                const imageFromAPI = await getImage(item.image)
+                const imageFromAPI = await BookService.getImageBook(item.image)
                 setImage(imageFromAPI)
             }
         }
