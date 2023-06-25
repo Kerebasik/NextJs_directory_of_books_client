@@ -16,13 +16,6 @@
   border-radius: 25px;
   transition-property: background-color;
   transition-duration: 0.5s;
-  &:hover{
-    background-color: $textColor;
-    button{
-      color: $mainBack;
-    }
-
-  }
   button{
     transition-property: color;
     transition-duration: 0.5s;
@@ -32,6 +25,30 @@
     width: 100%;
     height: 100%;
     background: none;
+  }
+}
+
+@media (hover: hover) {
+  .buttonUp{
+    &:hover{
+      background-color: $textColor;
+      button{
+        color: $mainBack;
+      }
+
+    }
+  }
+}
+
+@media (hover: none) {
+  .buttonUp{
+    &:active{
+      background-color: $textColor;
+      button{
+        color: $mainBack;
+      }
+
+    }
   }
 }
 

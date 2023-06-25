@@ -17,9 +17,27 @@
     transition-property: background-color, color;
     transition-duration: 0.5s;
     font-weight: 700;
-    &:hover{
-      background-color: $headerBack;
-      color: $mainBack;
+  }
+}
+
+@media (hover: none){
+  .panel{
+    button{
+      &:hover{
+        background-color: $headerBack;
+        color: $mainBack;
+      }
+    }
+  }
+}
+
+@media (hover: hover){
+  .panel{
+    button{
+      &:hover{
+        background-color: $headerBack;
+        color: $mainBack;
+      }
     }
   }
 }

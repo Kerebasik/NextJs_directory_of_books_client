@@ -18,19 +18,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover{
-    background-color: $textColor;
-    @include backgroundImage("../../public/icons8-delete-30.png");
-    button{
-      color: $mainBack;
-    }
 
-  }
   button{
     font-size: 24px;
     font-weight: bold;
     width: 100%;
     height: 100%;
     background: none;
+  }
+}
+
+@media (hover: hover){
+  .buttonDelete{
+    &:hover{
+      background-color: $textColor;
+      @include backgroundImage("../../public/icons8-delete-30.png");
+      button{
+        color: $mainBack;
+      }
+    }
+  }
+}
+
+
+@media (hover: none){
+  .buttonDelete{
+    &:hover{
+      background-color: $textColor;
+      @include backgroundImage("../../public/icons8-delete-30.png");
+      button{
+        color: $mainBack;
+      }
+    }
   }
 }

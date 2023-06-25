@@ -33,8 +33,33 @@
                 border-bottom-color: $mainBack;
                 transition-property: border-bottom-color;
                 transition-duration: 0.5s;
-                &:hover{
-                    border-bottom-color: $footerBack;
+            }
+        }
+    }
+}
+
+@media (hover: hover) {
+    .header{
+        .content{
+            .navigate{
+                a{
+                    &:hover{
+                        border-bottom-color: $footerBack;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (hover: none) {
+    .header{
+        .content{
+            .navigate{
+                a{
+                    &:hover{
+                        border-bottom-color: $footerBack;
+                    }
                 }
             }
         }
